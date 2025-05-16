@@ -1,0 +1,11 @@
+Glyphs.clearLog()
+font = Glyphs.font
+
+for glyph in font.selection:
+	print(glyph.name)
+	for layer in glyph.layers:
+		if layer.name.startswith('Bold'):
+			print('Bold layer')
+		else:
+			layer.attributes["colorPalette"] = 0
+		print(layer.attributes)
