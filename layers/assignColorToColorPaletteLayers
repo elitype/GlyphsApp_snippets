@@ -1,0 +1,25 @@
+Glyphs.clearLog()
+font = Glyphs.font
+
+C1 = 'Color '
+
+for glyph in font.selection:
+	print(glyph.name)
+	count = 0
+	for layer in glyph.layers:
+		if layer.name == 'Bold':
+			continue
+		else: # change asssigned color to Color Palette layers
+			layer.attributes["colorPalette"] = count
+			count += 1
+	
+	# delete shapes from Color 0 and Color 1, keep shapes in the other layers
+	for layer in glyph.layers:
+		if layer.attributes["colorPalette"] == 0:
+			if layer.shapes:
+				del layer.shapes[0:]
+		elif layer.attributes["colorPalette"] == 1:
+			if layer.shapes:
+				del layer.shapes[0:]
+		else:
+			pass
