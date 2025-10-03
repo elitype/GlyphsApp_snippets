@@ -1,0 +1,14 @@
+Glyphs.clearLog()
+font = Glyphs.font
+
+anchorPosBold = 91 # distance to the vertical stroke(kana) from right to left
+anchorPosLight = 115
+
+for layer in font.selectedLayers:
+    layerW = layer.width
+    for item in layer.selection:
+#        x_coord = item.x # comment and uncomment to make it work (Glyphs bug)
+        if layer.name == 'Bold':
+            item.x += layerW - (x_coord + anchorPosBold)
+        elif layer.name == 'Light':
+            item.x += layerW - (x_coord + anchorPosLight)
