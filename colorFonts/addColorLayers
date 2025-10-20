@@ -1,0 +1,25 @@
+Glyphs.clearLog()
+font = Glyphs.font
+
+# Duplicate layer and convert new layers to color
+for glyph in font.selection:
+	newLayer = glyph.layers[0].copy()
+	newLayer.name = 'Color 0'
+	glyph.layers.append(newLayer)
+	newLayer = glyph.layers[0].copy()
+	newLayer.name = 'Color 1'
+	glyph.layers.append(newLayer)
+	newLayer = glyph.layers[0].copy()
+	newLayer.name = 'Color 2'
+	glyph.layers.append(newLayer)
+	count = 0
+	for layer in glyph.layers:
+		if layer.name.startswith('Color'):
+			layer.attributes["colorPalette"] = count
+			count += 1
+	for layer in glyph.layers:
+		if layer.name == 'Color 0':
+			print(layer.name)
+		if layer.name == 'Color 1':
+			print(layer.name)
+print('Done')
